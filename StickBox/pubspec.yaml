@@ -23,11 +23,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  footer:
+  http:
+  google_fonts:
+  html:
+  webview_flutter: 0.3.20+2
+  flutter_inappwebview: ^4.0.0+4
+  avatar_glow:
+  cupertino_icons: ^0.1.3
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -38,6 +46,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - Assets/Images/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
