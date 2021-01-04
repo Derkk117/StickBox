@@ -1,4 +1,5 @@
 import 'package:StickBox/MyColor.dart';
+import 'package:StickBox/SignUp.dart';
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'delayed_animation.dart';
@@ -48,7 +49,7 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
                     AvatarGlow(
                       endRadius: 100,
                       duration: Duration(seconds: 2),
-                      glowColor: Colors.white24,
+                      glowColor: Colors.blue,
                       repeat: true,
                       repeatPauseDuration: Duration(seconds: 2),
                       startDelay: Duration(seconds: 1),
@@ -223,10 +224,10 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
 
   void _goToSignUp(TapDownDetails details) {
     _controller.forward();
-    /*Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => SignUp()),
-    );*/
+    );
   }
 
   void _clear(TapUpDetails details) {
