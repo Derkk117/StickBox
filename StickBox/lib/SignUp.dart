@@ -1,5 +1,4 @@
 import 'package:StickBox/MyColor.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'delayed_animation.dart';
@@ -70,10 +69,10 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                     ),
                     DelayedAnimation(
                       child: TextField(
-                          decoration: InputDecoration(
+                        decoration: InputDecoration(
                           labelText: 'Nombre',
                           border: OutlineInputBorder(),
-                            filled: true,
+                          filled: true,
                           fillColor: Colors.white,
                         ),
                       ),
@@ -139,7 +138,6 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       ),
                       delay: delayedAmount + 4000,
                     ),
-
                     DelayedAnimation(
                       child: GestureDetector(
                         onTapDown: _goToSignUp,

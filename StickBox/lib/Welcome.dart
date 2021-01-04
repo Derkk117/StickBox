@@ -24,8 +24,8 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
       lowerBound: 0.0,
       upperBound: 0.1,
     )..addListener(() {
-      setState(() {});
-    });
+        setState(() {});
+      });
     super.initState();
   }
 
@@ -38,7 +38,7 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
         home: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('Assets/Images/agujero-negro.jpg'),
+                  image: AssetImage('Assets/Images/Bubble_bg.png'),
                   fit: BoxFit.cover)),
           child: Scaffold(
               backgroundColor: Colors.transparent,
@@ -73,6 +73,13 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 35.0,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 1.0,
+                              color: createMaterialColor(Color(0xFF4079E0)),
+                              offset: Offset(2.0, 2.0),
+                            ),
+                          ],
                           color: color,
                         ),
                       ),
@@ -84,6 +91,13 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 35.0,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 1.0,
+                                color: createMaterialColor(Color(0xFF4079E0)),
+                                offset: Offset(2.0, 2.0),
+                              ),
+                            ],
                             color: color),
                       ),
                       delay: delayedAmount + 2000,
@@ -97,6 +111,13 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
                         style: TextStyle(
                           fontSize: 20.0,
                           color: color,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 1.0,
+                              color: createMaterialColor(Color(0xFF4079E0)),
+                              offset: Offset(2.0, 2.0),
+                            ),
+                          ],
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -108,6 +129,13 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
                         style: TextStyle(
                           fontSize: 20.0,
                           color: color,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 1.0,
+                              color: createMaterialColor(Color(0xFF4079E0)),
+                              offset: Offset(2.0, 2.0),
+                            ),
+                          ],
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -148,42 +176,42 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
   }
 
   Widget get _animatedLabelButtonUI => Container(
-    height: 60,
-    width: 270,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(100.0),
-      color: Colors.transparent,
-    ),
-    child: Center(
-      child: Text(
-        'Do not you have an account yet?',
-        style: TextStyle(
-          fontSize: 18.0,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
+        height: 60,
+        width: 270,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100.0),
+          color: Colors.transparent,
         ),
-      ),
-    ),
-  );
+        child: Center(
+          child: Text(
+            'Do not you have an account yet?',
+            style: TextStyle(
+              fontSize: 18.0,
+              color: createMaterialColor(Color(0xFF4079E0)),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      );
 
   Widget get _animatedButtonUI => Container(
-    height: 60,
-    width: 270,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(100.0),
-      color: Colors.white,
-    ),
-    child: Center(
-      child: Text(
-        'Log In',
-        style: TextStyle(
-          fontSize: 20.0,
-          fontWeight: FontWeight.bold,
-          color: createMaterialColor(Color(0xFF4079E0)),
+        height: 60,
+        width: 270,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100.0),
+          color: Colors.white,
         ),
-      ),
-    ),
-  );
+        child: Center(
+          child: Text(
+            'Log In',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: createMaterialColor(Color(0xFF4079E0)),
+            ),
+          ),
+        ),
+      );
 
   void _goToLogIn(TapDownDetails details) {
     _controller.forward();
