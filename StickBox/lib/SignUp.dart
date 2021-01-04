@@ -10,21 +10,17 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
   final int delayedAmount = 500;
-  double titleSize = 30;
-  AnimationController _controller;
+  double titleSize = 35;
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(
-        milliseconds: 200,
-      ),
-      lowerBound: 0.0,
-      upperBound: 0.1,
-    )..addListener(() {
-        setState(() {});
-      });
+
     super.initState();
   }
 
@@ -36,7 +32,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
       title: "Sign Up",
       theme: ThemeData(
         primarySwatch: createMaterialColor(Color(0xFF1F1F3A)),
-        scaffoldBackgroundColor: createMaterialColor(Color(0xFF212150)),
+        scaffoldBackgroundColor: createMaterialColor(Color(0xFF121213)),
       ),
       home: Scaffold(
           appBar: AppBar(
@@ -46,7 +42,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
             child: ListView(
               children: [
                 SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 Center(
                   child: Container(
@@ -109,17 +105,27 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                   height: 20,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15, right: 15),
+                  padding: EdgeInsets.only(left: 20, right: 20),
                   child: Column(
                     children: [
                       DelayedAnimation(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(8.0),
-                            labelText: 'Your name',
-                            border: OutlineInputBorder(),
-                            filled: true,
-                            fillColor: Colors.white,
+                        child: new Theme(
+                          data: new ThemeData(
+                              brightness: Brightness.dark,
+                              inputDecorationTheme: InputDecorationTheme(
+                                labelStyle: TextStyle(color: Colors.blue),
+                              )),
+                          child: new TextField(
+                            style: TextStyle(color: Colors.white),
+                            decoration: new InputDecoration(
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    style: BorderStyle.solid,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                labelText: 'Your Name:',
+                                labelStyle: TextStyle(color: Colors.blue)),
                           ),
                         ),
                         delay: delayedAmount + 500,
@@ -128,13 +134,23 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                         height: 10,
                       ),
                       DelayedAnimation(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(8.0),
-                            border: OutlineInputBorder(),
-                            filled: true,
-                            labelText: 'E-mail/Phone number',
-                            fillColor: Colors.white,
+                        child: new Theme(
+                          data: new ThemeData(
+                              brightness: Brightness.dark,
+                              inputDecorationTheme: InputDecorationTheme(
+                                labelStyle: TextStyle(color: Colors.blue),
+                              )),
+                          child: new TextField(
+                            style: TextStyle(color: Colors.white),
+                            decoration: new InputDecoration(
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    style: BorderStyle.solid,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                labelText: 'E-mail / Phone number:',
+                                labelStyle: TextStyle(color: Colors.blue)),
                           ),
                         ),
                         delay: delayedAmount + 1000,
@@ -143,13 +159,24 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                         height: 10,
                       ),
                       DelayedAnimation(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(8.0),
-                            border: OutlineInputBorder(),
-                            filled: true,
-                            labelText: 'Password',
-                            fillColor: Colors.white,
+                        child: new Theme(
+                          data: new ThemeData(
+                              brightness: Brightness.dark,
+                              inputDecorationTheme: InputDecorationTheme(
+                                labelStyle: TextStyle(color: Colors.blue),
+                              )),
+                          child: new TextField(
+                            style: TextStyle(color: Colors.white),
+                            obscureText: true,
+                            decoration: new InputDecoration(
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    style: BorderStyle.solid,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                labelText: 'Password:',
+                                labelStyle: TextStyle(color: Colors.blue)),
                           ),
                         ),
                         delay: delayedAmount + 1500,
@@ -159,6 +186,68 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                 ),
                 SizedBox(
                   height: 30.0,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: size.width / 4, right: size.width / 4),
+                  child: FlatButton(
+                      color: Colors.indigo,
+                      textColor: Colors.white,
+                      padding: EdgeInsets.all(8.0),
+                      splashColor: Colors.blueAccent,
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(50.0)),
+                      onPressed: () {
+                        /*Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LogIn()),
+                      );*/
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Text(
+                          "Continue",
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.w300),
+                        ),
+                      )),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Center(
+                  child: Text(
+                    "Or continue with:",
+                    style: TextStyle(fontSize: 18, color: Colors.indigo),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(30.0, 5.0, 30.0, 5.0),
+                  child: new RaisedButton(
+                      padding:
+                          EdgeInsets.only(top: 3.0, bottom: 3.0, left: 3.0),
+                      color: createMaterialColor(Color(0xFF121213)),
+                      onPressed: () {},
+                      child: new Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          new Image.asset(
+                            'Assets/Images/google.png',
+                            height: 48.0,
+                          ),
+                          new Container(
+                              padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                              child: new Text(
+                                "Sign in with Google",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                        ],
+                      )),
                 ),
               ],
             ),
