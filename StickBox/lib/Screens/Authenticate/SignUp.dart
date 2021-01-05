@@ -1,7 +1,7 @@
 import 'package:StickBox/MyColor.dart';
-import 'package:StickBox/Services/Auth.dart';
 import 'package:flutter/material.dart';
 import 'package:StickBox/delayed_animation.dart';
+import 'package:StickBox/Services/Auth.dart';
 import 'package:flutter/services.dart';
 
 class SignUp extends StatefulWidget {
@@ -200,11 +200,18 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       splashColor: Colors.blueAccent,
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(50.0)),
-                      onPressed: () {
+                      onPressed: () async {
                         /*Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => LogIn()),
                       );*/
+                        dynamic result = await _auth.signInAnon();
+                        if (result == null) {
+                          print("error sing in");
+                        } else {
+                          print("sign in");
+                          print(result.uid);
+                        }
                       },
                       child: Padding(
                         padding: EdgeInsets.all(8),

@@ -2,6 +2,8 @@ import 'package:StickBox/Welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'MyColor.dart';
+// Import the firebase_core plugin
+import 'package:firebase_core/firebase_core.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +19,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    Firebase.initializeApp();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'StickBox',
