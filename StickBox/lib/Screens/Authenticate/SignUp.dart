@@ -1,6 +1,7 @@
 import 'package:StickBox/MyColor.dart';
+import 'package:StickBox/Services/Auth.dart';
 import 'package:flutter/material.dart';
-import 'delayed_animation.dart';
+import 'package:StickBox/delayed_animation.dart';
 import 'package:flutter/services.dart';
 
 class SignUp extends StatefulWidget {
@@ -10,6 +11,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
   final int delayedAmount = 500;
+  final AuthService _auth = AuthService();
+
   double titleSize = 35;
 
   @override

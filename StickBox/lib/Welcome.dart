@@ -1,5 +1,5 @@
 import 'package:StickBox/MyColor.dart';
-import 'package:StickBox/SignUp.dart';
+import 'package:StickBox/Screens/Wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'delayed_animation.dart';
@@ -159,41 +159,11 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
                     SizedBox(
                       height: 50.0,
                     ),
-                    DelayedAnimation(
-                      child: GestureDetector(
-                        onTapDown: _goToSignUp,
-                        onTapUp: _clear,
-                        child: Transform.scale(
-                          scale: _scale,
-                          child: _animatedLabelButtonUI,
-                        ),
-                      ),
-                      delay: delayedAmount + 5000,
-                    ),
                   ],
                 ),
               )),
         ));
   }
-
-  Widget get _animatedLabelButtonUI => Container(
-        height: 60,
-        width: 270,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100.0),
-          color: Colors.transparent,
-        ),
-        child: Center(
-          child: Text(
-            'Do not you have an account yet?',
-            style: TextStyle(
-              fontSize: 18.0,
-              color: createMaterialColor(Color(0xFF4079E0)),
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      );
 
   Widget get _animatedButtonUI => Container(
         height: 60,
@@ -204,7 +174,7 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
         ),
         child: Center(
           child: Text(
-            'Log In',
+            'Continue',
             style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
@@ -216,17 +186,9 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
 
   void _goToLogIn(TapDownDetails details) {
     _controller.forward();
-    /*Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LogIn()),
-    );*/
-  }
-
-  void _goToSignUp(TapDownDetails details) {
-    _controller.forward();
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => SignUp()),
+      MaterialPageRoute(builder: (context) => Wrapper()),
     );
   }
 
