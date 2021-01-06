@@ -241,7 +241,15 @@ class _LogInState extends State<LogIn> {
                         padding:
                             EdgeInsets.only(top: 3.0, bottom: 3.0, left: 3.0),
                         color: createMaterialColor(Color(0xFF121213)),
-                        onPressed: () {},
+                        onPressed: () async {
+                          dynamic result = await _auth.googleSignIn();
+                          if (result == null) {
+                            setState(() => error =
+                                "Please supply a valid email and a valid password");
+                          } else {
+                            print(result);
+                          }
+                        },
                         child: new Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[

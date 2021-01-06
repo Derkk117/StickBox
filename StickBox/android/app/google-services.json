@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "842867056929",
+    "firebase_url": "https://stickbox-default-rtdb.firebaseio.com",
     "project_id": "stickbox",
     "storage_bucket": "stickbox.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "842867056929-mtl9bhbfq17aronlu1g49t5oaf6gkmuf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.StickBox",
+            "certificate_hash": "ceb534197e6d8ba5faa5cbf3e08244bc3e97f16b"
+          }
+        },
         {
           "client_id": "842867056929-ekgild7f37plgmmsksgi6mcnapccvnl5.apps.googleusercontent.com",
           "client_type": 3

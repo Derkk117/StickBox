@@ -1,10 +1,6 @@
-import 'dart:ffi';
-
 import 'package:StickBox/MyColor.dart';
 import 'package:flutter/material.dart';
-import 'package:StickBox/delayed_animation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_search_bar/flutter_search_bar.dart';
 
 class MyStickers extends StatefulWidget {
   @override
@@ -15,12 +11,10 @@ class MyStickers extends StatefulWidget {
 }
 
 class _MyStickersState extends State<MyStickers> {
-
   _MyStickersState({this.navigatorKey, this.tabItem});
 
   final GlobalKey<NavigatorState> navigatorKey;
   final Tab tabItem;
-
 
   final int delayedAmount = 500;
   double titleSize = 35;
@@ -37,10 +31,8 @@ class _MyStickersState extends State<MyStickers> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "My Stickers",
@@ -52,8 +44,11 @@ class _MyStickersState extends State<MyStickers> {
           /*appBar
             ),
           ),*/
-        
-          appBar: AppBar(title: const Text('My Stickers'), backgroundColor: Colors.blueAccent ,),
+
+          appBar: AppBar(
+            title: const Text('My Stickers'),
+            backgroundColor: Colors.blueAccent,
+          ),
           bottomNavigationBar: BottomAppBar(
             //color: Color.alphaBlend(Colors.black, Colors.blue),
             child: new Row(
@@ -68,7 +63,6 @@ class _MyStickersState extends State<MyStickers> {
               ],
             ),
           ),
-
           body: Center(
             child: ListView(
               children: <Widget>[
@@ -91,15 +85,15 @@ class _MyStickersState extends State<MyStickers> {
                           splashColor: Colors.blueAccent,
                           /*shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(20.0)),*/
-                          shape: RoundedRectangleBorder(side: BorderSide(
-                              color: Colors.black,
-                              width: 5,
-                              style: BorderStyle.solid), borderRadius:
-                          BorderRadius.circular(20),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: Colors.black,
+                                width: 5,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                              height: 80,
-                          onPressed: () {
-                          },
+                          height: 80,
+                          onPressed: () {},
                           child: Padding(
                             padding: EdgeInsets.all(8),
                             child: Text(
@@ -117,15 +111,15 @@ class _MyStickersState extends State<MyStickers> {
                           splashColor: Colors.blueAccent,
                           /*shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(20.0)),*/
-                          shape: RoundedRectangleBorder(side: BorderSide(
-                              color: Colors.black,
-                              width: 5,
-                              style: BorderStyle.solid), borderRadius:
-                          BorderRadius.circular(20),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: Colors.black,
+                                width: 5,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(20),
                           ),
                           height: 80,
-                          onPressed: () {
-                          },
+                          onPressed: () {},
                           child: Padding(
                             padding: EdgeInsets.all(8),
                             child: Text(
@@ -160,26 +154,25 @@ class _MyStickersState extends State<MyStickers> {
                     textColor: Colors.blueAccent,
                     padding: EdgeInsets.all(8.0),
                     splashColor: Colors.blueAccent,
-                    shape: RoundedRectangleBorder(side: BorderSide(
-                        color: Colors.black,
-                        width: 5,
-                        style: BorderStyle.solid), borderRadius:
-                    BorderRadius.circular(20),
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                          color: Colors.black,
+                          width: 5,
+                          style: BorderStyle.solid),
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     /*shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(20.0)),*/
                     height: 80,
-                    onPressed: () {
-                    },
-                      child: Padding(
-
-                        padding: EdgeInsets.fromLTRB(0, 0, 200, 0),
-                        child: Text(
-                          "Carpeta N",
-                          style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w300),
-                        ),
+                    onPressed: () {},
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 200, 0),
+                      child: Text(
+                        "Carpeta N",
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.w300),
                       ),
+                    ),
                   ),
                 ),
 
@@ -189,7 +182,6 @@ class _MyStickersState extends State<MyStickers> {
                 SizedBox(
                   height: 30.0,
                 ),
-
               ],
             ),
           )),
