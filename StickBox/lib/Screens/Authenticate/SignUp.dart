@@ -210,7 +210,6 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                           print("error sing in");
                         } else {
                           print("sign in");
-                          print(result.uid);
                         }
                       },
                       child: Padding(
