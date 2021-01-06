@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "842867056929-unorh72fepg71b7spbaedoauh8jp1ehr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.StickBox",
+            "certificate_hash": "9924e6c8e749547855d137d3327842ae3e571aec"
+          }
+        },
+        {
           "client_id": "842867056929-ekgild7f37plgmmsksgi6mcnapccvnl5.apps.googleusercontent.com",
           "client_type": 3
         }

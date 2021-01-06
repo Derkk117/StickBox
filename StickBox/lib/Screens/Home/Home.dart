@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
         ),
         home: Scaffold(
             appBar: AppBar(
-              title: Text("Home v1"),
+              title: Text("Home"),
               elevation: 0.0,
               actions: <Widget>[
                 FlatButton.icon(
