@@ -5,14 +5,23 @@ import 'package:StickBox/Services/Auth.dart';
 import 'package:flutter/services.dart';
 
 class SignUp extends StatefulWidget {
+  final Function toggleView;
+  SignUp({this.toggleView});
+
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
-  final int delayedAmount = 500;
+  final int delayedAmount = 100;
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
+  // text field state
+  String fullName = "";
+  String email = "";
+  String password = "";
+  String error = "";
   double titleSize = 35;
 
   @override
@@ -40,6 +49,19 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
       home: Scaffold(
           appBar: AppBar(
             title: Text("Sign Up"),
+            actions: <Widget>[
+              FlatButton.icon(
+                textColor: Colors.white,
+                icon: Icon(
+                  Icons.person,
+                  color: Colors.white,
+                ),
+                label: Text("Log In"),
+                onPressed: () {
+                  widget.toggleView();
+                },
+              )
+            ],
           ),
           body: Center(
             child: ListView(
@@ -107,126 +129,146 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                 SizedBox(
                   height: 20,
                 ),
+                Text(
+                  error,
+                  style: TextStyle(color: Colors.red, fontSize: 14),
+                ),
                 Padding(
-                  padding: EdgeInsets.only(left: 20, right: 20),
-                  child: Column(
-                    children: [
-                      DelayedAnimation(
-                        child: new Theme(
-                          data: new ThemeData(
-                              brightness: Brightness.dark,
-                              inputDecorationTheme: InputDecorationTheme(
-                                labelStyle: TextStyle(color: Colors.blue),
-                              )),
-                          child: new TextField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: new InputDecoration(
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    style: BorderStyle.solid,
-                                    color: Colors.blue,
+                  padding: EdgeInsets.symmetric(horizontal: 35),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        DelayedAnimation(
+                          child: new Theme(
+                            data: new ThemeData(
+                                brightness: Brightness.dark,
+                                inputDecorationTheme: InputDecorationTheme(
+                                  labelStyle: TextStyle(color: Colors.blue),
+                                )),
+                            child: new TextFormField(
+                              validator: (val) =>
+                                  val.isEmpty ? 'Enter your full name' : null,
+                              onChanged: (val) {
+                                setState(() => fullName = val);
+                              },
+                              style: TextStyle(color: Colors.white),
+                              decoration: new InputDecoration(
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      style: BorderStyle.solid,
+                                      color: Colors.blue,
+                                    ),
                                   ),
-                                ),
-                                labelText: 'Your Name:',
-                                labelStyle: TextStyle(color: Colors.blue)),
+                                  labelText: 'Your Name:',
+                                  labelStyle: TextStyle(color: Colors.blue)),
+                            ),
                           ),
+                          delay: delayedAmount + 500,
                         ),
-                        delay: delayedAmount + 500,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      DelayedAnimation(
-                        child: new Theme(
-                          data: new ThemeData(
-                              brightness: Brightness.dark,
-                              inputDecorationTheme: InputDecorationTheme(
-                                labelStyle: TextStyle(color: Colors.blue),
-                              )),
-                          child: new TextField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: new InputDecoration(
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    style: BorderStyle.solid,
-                                    color: Colors.blue,
+                        SizedBox(
+                          height: 10,
+                        ),
+                        DelayedAnimation(
+                          child: new Theme(
+                            data: new ThemeData(
+                                brightness: Brightness.dark,
+                                inputDecorationTheme: InputDecorationTheme(
+                                  labelStyle: TextStyle(color: Colors.blue),
+                                )),
+                            child: new TextFormField(
+                              validator: (val) =>
+                                  val.isEmpty ? 'Enter an email' : null,
+                              onChanged: (val) {
+                                setState(() => email = val);
+                              },
+                              style: TextStyle(color: Colors.white),
+                              decoration: new InputDecoration(
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      style: BorderStyle.solid,
+                                      color: Colors.blue,
+                                    ),
                                   ),
-                                ),
-                                labelText: 'E-mail / Phone number:',
-                                labelStyle: TextStyle(color: Colors.blue)),
+                                  labelText: 'E-mail:',
+                                  labelStyle: TextStyle(color: Colors.blue)),
+                            ),
                           ),
+                          delay: delayedAmount + 1000,
                         ),
-                        delay: delayedAmount + 1000,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      DelayedAnimation(
-                        child: new Theme(
-                          data: new ThemeData(
-                              brightness: Brightness.dark,
-                              inputDecorationTheme: InputDecorationTheme(
-                                labelStyle: TextStyle(color: Colors.blue),
-                              )),
-                          child: new TextField(
-                            style: TextStyle(color: Colors.white),
-                            obscureText: true,
-                            decoration: new InputDecoration(
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    style: BorderStyle.solid,
-                                    color: Colors.blue,
+                        SizedBox(
+                          height: 10,
+                        ),
+                        DelayedAnimation(
+                          child: new Theme(
+                            data: new ThemeData(
+                                brightness: Brightness.dark,
+                                inputDecorationTheme: InputDecorationTheme(
+                                  labelStyle: TextStyle(color: Colors.blue),
+                                )),
+                            child: new TextFormField(
+                              validator: (val) => val.length < 6
+                                  ? 'Enter your password 6+ chars long'
+                                  : null,
+                              onChanged: (val) {
+                                setState(() => password = val);
+                              },
+                              style: TextStyle(color: Colors.white),
+                              obscureText: true,
+                              decoration: new InputDecoration(
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      style: BorderStyle.solid,
+                                      color: Colors.blue,
+                                    ),
                                   ),
-                                ),
-                                labelText: 'Password:',
-                                labelStyle: TextStyle(color: Colors.blue)),
+                                  labelText: 'Password:',
+                                  labelStyle: TextStyle(color: Colors.blue)),
+                            ),
                           ),
+                          delay: delayedAmount + 1500,
                         ),
-                        delay: delayedAmount + 1500,
-                      ),
-                    ],
+                        SizedBox(
+                          height: 20,
+                        ),
+                        FlatButton(
+                            color: Colors.indigo,
+                            textColor: Colors.white,
+                            padding: EdgeInsets.all(8.0),
+                            splashColor: Colors.blueAccent,
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(50.0)),
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                dynamic result =
+                                    await _auth.registerWithEmailAndPassword(
+                                        email, password);
+                                if (result == null) {
+                                  setState(() => error =
+                                      "Please supply a valid email and a valid password");
+                                } else {}
+                              }
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 15, top: 8, right: 15, bottom: 8),
+                              child: Text(
+                                "Continue",
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            )),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: size.width / 4, right: size.width / 4),
-                  child: FlatButton(
-                      color: Colors.indigo,
-                      textColor: Colors.white,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(50.0)),
-                      onPressed: () async {
-                        /*Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => LogIn()),
-                      );*/
-                        dynamic result = await _auth.signInAnon();
-                        if (result == null) {
-                          print("error sing in");
-                        } else {
-                          print("sign in");
-                        }
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Text(
-                          "Continue",
-                          style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w300),
-                        ),
-                      )),
                 ),
                 SizedBox(
                   height: 40,
                 ),
                 Center(
                   child: Text(
-                    "Or continue with:",
+                    "Or",
                     style: TextStyle(fontSize: 18, color: Colors.indigo),
                   ),
                 ),
