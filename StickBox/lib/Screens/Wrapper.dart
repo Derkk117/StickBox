@@ -1,6 +1,6 @@
 import 'package:StickBox/Models/User.dart';
 import 'package:StickBox/Screens/Authenticate/Authenticate.dart';
-import 'package:StickBox/Screens/Home/Home.dart';
+import 'package:StickBox/Screens/Home/IndexTab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +13,7 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return Authenticate();
     } else {
-      return Home();
+      return IndexTab();
     }
   }
 }
