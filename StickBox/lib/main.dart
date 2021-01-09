@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'MyColor.dart';
 // Import the firebase_core plugin
 import 'package:firebase_core/firebase_core.dart';
+import 'dart:async';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

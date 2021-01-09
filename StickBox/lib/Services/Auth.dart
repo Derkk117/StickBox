@@ -76,6 +76,13 @@ class AuthService {
     return _userFromFirebase(user);
   }
 
+  //Function to get the image user logged with google.
+  getProfileImage() {
+    if (_auth.currentUser.photoURL != null) {
+      return _auth.currentUser.photoURL;
+    }
+  }
+
   //Sign out
   Future signOut() async {
     try {

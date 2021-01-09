@@ -1,3 +1,4 @@
+import 'package:StickBox/Services/Auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -6,6 +7,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  AuthService service = AuthService();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -37,8 +39,8 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Container(
-                child: Image.asset(
-                  'Assets/Images/Stick_logo.png',
+                child: Image.network(
+                  service.getProfileImage(),
                   height: size.width / 5,
                 ),
               ),

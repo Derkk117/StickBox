@@ -1,6 +1,8 @@
 import 'package:StickBox/Screens/Home/Home.dart';
+import 'package:StickBox/Screens/Home/MyStickers.dart';
 import 'package:StickBox/Services/Auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../MyColor.dart';
 
@@ -20,11 +22,7 @@ class _IndexTabState extends State<IndexTab> {
   ];
   int _currentIndex = 2;
   final tabs = [
-    Center(
-        child: Text(
-      "My Stickers Page",
-      style: TextStyle(color: Colors.white),
-    )),
+    MyStickers(),
     Center(
         child: Text(
       "Forum Page",
@@ -45,6 +43,7 @@ class _IndexTabState extends State<IndexTab> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Sign Up",
