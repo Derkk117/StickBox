@@ -3,11 +3,9 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadSticker extends StatefulWidget {
-
   @override
   _UploadStickerState createState() => _UploadStickerState();
 }
@@ -21,24 +19,24 @@ class _UploadStickerState extends State<UploadSticker> {
   final ImagePicker _picker = ImagePicker();
 
   void _onImageButtonPressed(ImageSource source, {BuildContext context}) async {
-      await _displayPickImageDialog(context,
-              (double maxWidth, double maxHeight, int quality) async {
-            try {
-              final pickedFile = await _picker.getImage(
-                source: source,
-                maxWidth: maxWidth,
-                maxHeight: maxHeight,
-                imageQuality: quality,
-              );
-              setState(() {
-                _imageFile = pickedFile;
-              });
-            } catch (e) {
-              setState(() {
-                _pickImageError = e;
-              });
-            }
-          });
+    await _displayPickImageDialog(context,
+        (double maxWidth, double maxHeight, int quality) async {
+      try {
+        final pickedFile = await _picker.getImage(
+          source: source,
+          maxWidth: maxWidth,
+          maxHeight: maxHeight,
+          imageQuality: quality,
+        );
+        setState(() {
+          _imageFile = pickedFile;
+        });
+      } catch (e) {
+        setState(() {
+          _pickImageError = e;
+        });
+      }
+    });
   }
 
   Widget _previewImage() {
@@ -47,81 +45,80 @@ class _UploadStickerState extends State<UploadSticker> {
       return retrieveError;
     }
     if (_imageFile != null) {
-      if (_imageFile.path.contains(".webp")  ) {
-        return
-           Container(
-             child: ListView(
-                children: <Widget>[
-                  Image.file(File(_imageFile.path), width: 350, filterQuality: FilterQuality.high,),
-                  SizedBox(height: 80,),
-                  FlatButton(
-                      height: 80,
-                      color: Colors.indigo,
-                      textColor: Colors.white,
-                      padding: EdgeInsets.all(8.0),
-                      splashColor: Colors.blueAccent,
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(50.0)),
-                      onPressed: (){},
-                      child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Text(
-                          "Submit",
-                          style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w300),
-                        ),
-                      )),
-                ],
-             ),
-             //child: Image.file(File(_imageFile.path)),
-           )
-          ;
-      }else{
+      if (_imageFile.path.contains(".webp")) {
+        return Container(
+          child: ListView(
+            children: <Widget>[
+              Image.file(
+                File(_imageFile.path),
+                width: 350,
+                filterQuality: FilterQuality.high,
+              ),
+              SizedBox(
+                height: 80,
+              ),
+              FlatButton(
+                  height: 80,
+                  color: Colors.indigo,
+                  textColor: Colors.white,
+                  padding: EdgeInsets.all(8.0),
+                  splashColor: Colors.blueAccent,
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(50.0)),
+                  onPressed: () {},
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text(
+                      "Submit",
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.w300),
+                    ),
+                  )),
+            ],
+          ),
+          //child: Image.file(File(_imageFile.path)),
+        );
+      } else {
         return /*Text(
           'You have not yet picked a Sticker (file type `.webp`).',
           textAlign: TextAlign.center,
         )*/
-          Container(
-            child: RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                text: 'You have not yet picked a Sticker (file type `.webp`).',
-                style: TextStyle(color: Colors.lightBlue, fontSize: 25),
-              ),
+            Container(
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              text: 'You have not yet picked a Sticker (file type `.webp`).',
+              style: TextStyle(color: Colors.lightBlue, fontSize: 25),
             ),
-          )
-          ;
+          ),
+        );
       }
     } else if (_pickImageError != null) {
       return /*Text(
         'Pick Sticker error: $_pickImageError',
         textAlign: TextAlign.center,
       )*/
-        Container(
-         child: RichText(
-           textAlign: TextAlign.center,
-             text: TextSpan(
-               text: 'Pick Sticker error: $_pickImageError',
-               style: TextStyle(color: Colors.lightBlue, fontSize: 25),
-             )
-         ),
-        )
-      ;
-
+          Container(
+        child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              text: 'Pick Sticker error: $_pickImageError',
+              style: TextStyle(color: Colors.lightBlue, fontSize: 25),
+            )),
+      );
     } else {
       return /*const Text(
         'You have not yet picked a Sticker.',
         textAlign: TextAlign.center,
       )*/
-        Container(
-          child: RichText(
+          Container(
+        child: RichText(
             textAlign: TextAlign.center,
-              text: TextSpan(
-                text: 'You have not picked a Sticker',
-                style: TextStyle(color: Colors.lightBlue, fontSize: 25),
-              )
-          ),
-        );
+            text: TextSpan(
+              text: 'You have not picked a Sticker',
+              style: TextStyle(color: Colors.lightBlue, fontSize: 25),
+            )),
+      );
     }
   }
 
@@ -148,38 +145,37 @@ class _UploadStickerState extends State<UploadSticker> {
       appBar: AppBar(
         title: Text('Upload Sticker'),
         backgroundColor: Colors.indigo,
-
       ),
       body: Center(
         child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
             ? FutureBuilder<void>(
-          future: retrieveLostData(),
-          builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.none:
-              case ConnectionState.waiting:
-                return const Text(
-                  'You have not yet picked a Sticker.',
-                  textAlign: TextAlign.center,
-                );
-              case ConnectionState.done:
-                return _previewImage();
-              default:
-                if (snapshot.hasError) {
-                  return Text(
-                    'Pick Sticker error: ${snapshot.error}}',
-                    textAlign: TextAlign.center,
-                  );
-                } else {
-                  return const Text(
-                    'You have not yet picked a Sticker.',
-                    textAlign: TextAlign.center,
-                  );
-                }
-            }
-          },
-        )
-            : ( _previewImage()),
+                future: retrieveLostData(),
+                builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.none:
+                    case ConnectionState.waiting:
+                      return const Text(
+                        'You have not yet picked a Sticker.',
+                        textAlign: TextAlign.center,
+                      );
+                    case ConnectionState.done:
+                      return _previewImage();
+                    default:
+                      if (snapshot.hasError) {
+                        return Text(
+                          'Pick Sticker error: ${snapshot.error}}',
+                          textAlign: TextAlign.center,
+                        );
+                      } else {
+                        return const Text(
+                          'You have not yet picked a Sticker.',
+                          textAlign: TextAlign.center,
+                        );
+                      }
+                  }
+                },
+              )
+            : (_previewImage()),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -216,7 +212,8 @@ class _UploadStickerState extends State<UploadSticker> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Add Stickers from device/WhatsApp/Media/WhatsApp Stickers'),
+            title: Text(
+                'Add Stickers from device/WhatsApp/Media/WhatsApp Stickers'),
             /*content: Column(
               children: <Widget>[
               ],
@@ -231,9 +228,9 @@ class _UploadStickerState extends State<UploadSticker> {
               FlatButton(
                   child: Text('PICK'),
                   onPressed: () {
-                    double width =  null;
-                    double height = null;
-                    int quality =  null;
+                    double width;
+                    double height;
+                    int quality;
                     onPick(width, height, quality);
                     Navigator.of(context).pop();
                   }),
