@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../MyColor.dart';
+import 'Account.dart';
 
 class IndexTab extends StatefulWidget {
   @override
@@ -34,11 +35,12 @@ class _IndexTabState extends State<IndexTab> {
       "Search Page",
       style: TextStyle(color: Colors.white),
     )),
-    Center(
+    Account(),
+    /*Center(
         child: Text(
       "Account Page",
       style: TextStyle(color: Colors.white),
-    )),
+    )),*/
   ];
 
   @override
