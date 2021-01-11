@@ -12,7 +12,6 @@ class _AccountState extends State<Account> {
   AuthService service = AuthService();
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return ListView(
       children: [
         SizedBox(
@@ -24,7 +23,6 @@ class _AccountState extends State<Account> {
             child: getImage(),
           ),
         ),
-
         Container(
           child: Center(
             child: Padding(
@@ -32,7 +30,7 @@ class _AccountState extends State<Account> {
               child: Row(
                 children: [
                   SizedBox(
-                    width: 300/*(size.width / 4) * 2*/,
+                    width: 300 /*(size.width / 4) * 2*/,
                     //height: 100/*size.width / 5*/,
                     child: Padding(
                       padding: EdgeInsets.only(left: 0, right: 0),
@@ -40,71 +38,71 @@ class _AccountState extends State<Account> {
                         //color: Colors.white,
                         child: Column(
                           children: [
-                            RichText(text: TextSpan(
+                            RichText(
+                                text: TextSpan(
                               text: 'Name:',
-                              style: TextStyle(color: Colors.lightBlue, fontSize: 20),
+                              style: TextStyle(
+                                  color: Colors.lightBlue, fontSize: 20),
                             )),
                             TextFormField(
-                              validator: (val) =>
-                              val.isEmpty ? '' : null,
+                              validator: (val) => val.isEmpty ? '' : null,
                               onChanged: (val) {
                                 //setState(() =>  val = 'hola');
                               },
                               style: TextStyle(color: Colors.lightBlue),
                               decoration: InputDecoration(
-                                hintText: getName(),
-                                hintStyle: TextStyle(color: Colors.blueAccent, fontSize: 20),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
+                                  hintText: getName(),
+                                  hintStyle: TextStyle(
+                                      color: Colors.blueAccent, fontSize: 20),
+                                  focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
                                     style: BorderStyle.solid,
                                     color: Colors.blue,
-                                  )
-                                )
-                              ),
+                                  ))),
                             ),
-                            RichText(text: TextSpan(
+                            RichText(
+                                text: TextSpan(
                               text: 'Account Type:',
-                              style: TextStyle(color: Colors.lightBlue, fontSize: 20),
+                              style: TextStyle(
+                                  color: Colors.lightBlue, fontSize: 20),
                             )),
                             TextFormField(
-                              validator: (val) =>
-                              val.isEmpty ? '' : null,
+                              validator: (val) => val.isEmpty ? '' : null,
                               onChanged: (val) {
                                 //setState(() =>  val = 'hola');
                               },
                               style: TextStyle(color: Colors.lightBlue),
                               decoration: InputDecoration(
                                   hintText: getType(),
-                                  hintStyle: TextStyle(color: Colors.blueAccent, fontSize: 20),
+                                  hintStyle: TextStyle(
+                                      color: Colors.blueAccent, fontSize: 20),
                                   focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        style: BorderStyle.solid,
-                                        color: Colors.blue,
-                                      )
-                                  )
-                              ),
+                                    style: BorderStyle.solid,
+                                    color: Colors.blue,
+                                  ))),
                             ),
-                            RichText(text: TextSpan(
+                            RichText(
+                                text: TextSpan(
                               text: 'Available Storage:',
-                              style: TextStyle(color: Colors.lightBlue, fontSize: 20),
+                              style: TextStyle(
+                                  color: Colors.lightBlue, fontSize: 20),
                             )),
                             TextFormField(
-                              validator: (val) =>
-                              val.isEmpty ? '' : null,
+                              validator: (val) => val.isEmpty ? '' : null,
                               onChanged: (val) {
                                 //setState(() =>  val = 'hola');
                               },
                               style: TextStyle(color: Colors.lightBlue),
                               decoration: InputDecoration(
-                                  hintText: 'a',//service.getProfileName(),
-                                  hintStyle: TextStyle(color: Colors.blueAccent, fontSize: 20),
+                                  hintText: 'a', //service.getProfileName(),
+                                  hintStyle: TextStyle(
+                                      color: Colors.blueAccent, fontSize: 20),
                                   focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                        style: BorderStyle.solid,
-                                        color: Colors.blue,
-                                      )
-                                  )
-                              ),
+                                    style: BorderStyle.solid,
+                                    color: Colors.blue,
+                                  ))),
                             ),
                           ],
                         ),
@@ -122,7 +120,7 @@ class _AccountState extends State<Account> {
         Center(
           child: FlatButton(
             color: Colors.blue,
-            onPressed: (){},
+            onPressed: () {},
             child: Text('Save'),
           ),
           /*child: Text(
@@ -133,9 +131,7 @@ class _AccountState extends State<Account> {
         SizedBox(
           height: 10,
         ),
-        Center(
-
-        ),
+        Center(),
         SizedBox(
           height: 10,
         ),
@@ -143,27 +139,28 @@ class _AccountState extends State<Account> {
     );
   }
 
-  getType(){
-    if(service.getProfileName() != null){
+  getType() {
+    if (service.getProfileName() != null) {
       return 'Account Google';
-    }else{
+    } else {
       return 'Account email';
     }
   }
 
-  Image getImage(){
-    if(service.getProfileName() != null){
+  Image getImage() {
+    if (service.getProfileName() != null) {
       return Image.network(service.getProfileImage());
-    }else{
-      return Image.network('https://definicion.de/wp-content/uploads/2019/06/perfildeusuario.jpg');
+    } else {
+      return Image.network(
+          'https://definicion.de/wp-content/uploads/2019/06/perfildeusuario.jpg');
     }
   }
 
-  getName(){
-    if(service.getProfileName() != null){
+  getName() {
+    if (service.getProfileName() != null) {
       return service.getProfileName();
-    }else{
-     return service.getEmail();
+    } else {
+      return service.getEmail();
     }
   }
 }

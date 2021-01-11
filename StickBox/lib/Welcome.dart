@@ -14,6 +14,7 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
   final int delayedAmount = 500;
   double _scale;
   AnimationController _controller;
+
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIOverlays([]);
@@ -186,6 +187,8 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
 
   void _goToLogIn(TapDownDetails details) {
     _controller.forward();
+
+    print("ok");
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => Wrapper()),

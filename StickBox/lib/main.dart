@@ -9,6 +9,8 @@ import 'MyColor.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
 
+import 'Utils/Database.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIOverlays([]);
@@ -22,6 +24,19 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Map<String, String> newUser = {};
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  getUser() async {
+    final _userData = await DBProvider.db.getUser();
+    return _userData;
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<UserSB>.value(

@@ -36,11 +36,6 @@ class _IndexTabState extends State<IndexTab> {
       style: TextStyle(color: Colors.white),
     )),
     Account(),
-    /*Center(
-        child: Text(
-      "Account Page",
-      style: TextStyle(color: Colors.white),
-    )),*/
   ];
 
   @override

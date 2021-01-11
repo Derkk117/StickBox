@@ -76,27 +76,27 @@ class AuthService {
     return _userFromFirebase(user);
   }
 
-  getProfileName(){
-    if(_auth.currentUser.displayName != null){
+  getProfileName() {
+    if (_auth.currentUser.displayName != null) {
       return _auth.currentUser.displayName;
     }
   }
 
   //Function to get the image user logged with google.
   getProfileImage() {
-    try{
-      return _auth.currentUser.photoURL;
+    try {
+      if (_auth.currentUser.photoURL != null) {
+        return _auth.currentUser.photoURL;
+      }
     } catch (e) {
       return null;
     }
-    if (_auth.currentUser.photoURL != null) {
-      return _auth.currentUser.photoURL;
-    }
   }
 
-  getEmail(){
+  getEmail() {
     return _auth.currentUser.email;
   }
+
   //Sign out
   Future signOut() async {
     try {
