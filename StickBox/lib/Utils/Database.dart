@@ -29,7 +29,7 @@ class DBProvider {
   }
 
   //Insert a new user into SQLite database.
-  newuser(Sticker newSticker) async {
+  newSticker(Sticker newSticker) async {
     final db = await database;
 
     var res = await db.rawInsert(

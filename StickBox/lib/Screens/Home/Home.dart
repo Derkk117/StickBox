@@ -30,9 +30,9 @@ class _HomeState extends State<Home> {
                     color: Colors.white,
                     child: Column(
                       children: [
-                        Text("Name: "),
-                        Text("Acount Type: "),
-                        Text("Available Storage: "),
+                        Text("Name: " + service.getProfileName()),
+                        Text("Acount Type: Free"),
+                        Text("Available Storage: --"),
                       ],
                     ),
                   ),

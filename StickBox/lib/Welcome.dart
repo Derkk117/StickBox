@@ -187,8 +187,6 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
 
   void _goToLogIn(TapDownDetails details) {
     _controller.forward();
-
-    print("ok");
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => Wrapper()),
