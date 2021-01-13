@@ -117,7 +117,7 @@ class _AccountState extends State<Account> {
         SizedBox(
           height: 15,
         ),
-        Center(
+        /*Center(
           child: FlatButton(
             color: Colors.blue,
             onPressed: () {},
@@ -127,7 +127,7 @@ class _AccountState extends State<Account> {
             "Your most voted stickers: ",
             style: TextStyle(color: Colors.white),
           ),*/
-        ),
+        ),*/
         SizedBox(
           height: 10,
         ),

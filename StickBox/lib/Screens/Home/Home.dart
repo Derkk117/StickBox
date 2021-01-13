@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
                     color: Colors.white,
                     child: Column(
                       children: [
-                        Text("Name: " + service.getProfileName()),
+                        Text(getName()),
                         Text("Acount Type: Free"),
                         Text("Available Storage: --"),
                       ],
@@ -39,10 +39,13 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Container(
-                child: Image.network(
+                child: Center(
+                  child: getImage(),
+                ),
+                /*child: getImage(),Image.network( getImage().toString()
                   service.getProfileImage(),
                   height: size.width / 5,
-                ),
+                ),*/
               ),
             ],
           ),
@@ -171,4 +174,22 @@ class _HomeState extends State<Home> {
       ],
     );
   }
+
+  Image getImage() {
+    if (service.getProfileName() != null) {
+      return Image.network(service.getProfileImage(), height: 70);
+    } else {
+      return Image.network(
+          'https://definicion.de/wp-content/uploads/2019/06/perfildeusuario.jpg',height: 55);
+    }
+  }
+
+  getName() {
+    if (service.getProfileName() != null) {
+      return service.getProfileName();
+    } else {
+      return service.getEmail();
+    }
+  }
+
 }
